@@ -1,0 +1,27 @@
+{
+  "name": "meta-sanitizer",
+  "version": "1.0.0",
+  "description": "This lib contain useful functions to sanitize strings.",
+  "main": "src/index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/JimyRFP/Sanitizer.git"
+  },
+  "keywords": [
+    "Sanitizer",
+    "strings",
+    "clear"
+  ],
+  "author": "Rafael Floriani Pinto <rafaelflorianipinto@gmail.com>",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/JimyRFP/Sanitizer/issues"
+  },
+  "homepage": "https://github.com/JimyRFP/Sanitizer#readme",
+  "dependencies": {
+ 
+  }
+}
