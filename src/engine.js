@@ -1,6 +1,6 @@
 "use strict";
 exports.__esModule = true;
-exports.SanitizerEngine = void 0;
+exports.charInsertEngine = exports.SanitizerEngine = void 0;
 function SanitizerEngine(dataToSanitize, keepLetters, keepNumbers, allowedChars) {
     var sanitizedData = "";
     for (var i = 0; i < dataToSanitize.length; i++) {
@@ -30,3 +30,22 @@ function SanitizerEngine(dataToSanitize, keepLetters, keepNumbers, allowedChars)
     };
 }
 exports.SanitizerEngine = SanitizerEngine;
+function charInsertEngine(dataToSanitize, searchChars, insertString) {
+    var sanitizedData = '';
+    for (var i = 0; i < dataToSanitize.length; i++) {
+        var currentChar = dataToSanitize[i];
+        var j = 0;
+        for (; j < searchChars.length; j++)
+            if (currentChar === searchChars[j])
+                break;
+        if (j < searchChars.length)
+            sanitizedData += insertString;
+        sanitizedData += currentChar;
+    }
+    return {
+        isOk: true,
+        sanitizedData: sanitizedData,
+        error: 'no Error'
+    };
+}
+exports.charInsertEngine = charInsertEngine;

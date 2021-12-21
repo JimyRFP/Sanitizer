@@ -1,6 +1,6 @@
 {
   "name": "meta-sanitizer",
-  "version": "1.0.2",
+  "version": "1.0.4",
   "description": "This lib contain useful functions to sanitize strings.",
   "main": "src/index.js",
   "scripts": {

@@ -31,3 +31,21 @@ export function SanitizerEngine(dataToSanitize:string,
         error:'no Error'
     };
 }
+export function charInsertEngine(dataToSanitize:string,searchChars:Array<string>,insertString:string){
+   let sanitizedData='';
+   for(let i=0;i<dataToSanitize.length;i++){
+       let currentChar=dataToSanitize[i];
+       let j=0;
+       for(;j<searchChars.length;j++)
+          if(currentChar===searchChars[j])
+            break;   
+       if(j<searchChars.length)
+         sanitizedData+=insertString;
+       sanitizedData+=currentChar;       
+   }
+   return {
+    isOk:true,
+    sanitizedData:sanitizedData,
+    error:'no Error'
+   };
+}
