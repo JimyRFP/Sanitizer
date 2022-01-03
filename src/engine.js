@@ -2,6 +2,10 @@
 exports.__esModule = true;
 exports.charInsertEngine = exports.SanitizerEngine = void 0;
 function SanitizerEngine(dataToSanitize, keepLetters, keepNumbers, allowedChars) {
+    var verify = verifyDataToSanitizer(dataToSanitize);
+    if (!verify.isOk) {
+        return verify;
+    }
     var sanitizedData = "";
     for (var i = 0; i < dataToSanitize.length; i++) {
         var currentChar = dataToSanitize[i];
@@ -31,6 +35,10 @@ function SanitizerEngine(dataToSanitize, keepLetters, keepNumbers, allowedChars)
 }
 exports.SanitizerEngine = SanitizerEngine;
 function charInsertEngine(dataToSanitize, searchChars, insertString) {
+    var verify = verifyDataToSanitizer(dataToSanitize);
+    if (!verify.isOk) {
+        return verify;
+    }
     var sanitizedData = '';
     for (var i = 0; i < dataToSanitize.length; i++) {
         var currentChar = dataToSanitize[i];
@@ -49,3 +57,16 @@ function charInsertEngine(dataToSanitize, searchChars, insertString) {
     };
 }
 exports.charInsertEngine = charInsertEngine;
+function verifyDataToSanitizer(dataToSanitize) {
+    var isOk = true;
+    var error = 'no Error';
+    if (typeof (dataToSanitize) !== 'string') {
+        error = 'Invalid Data To Sanitize Type';
+        isOk = false;
+    }
+    return {
+        isOk: isOk,
+        error: error,
+        sanitizedData: ''
+    };
+}

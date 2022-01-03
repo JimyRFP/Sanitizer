@@ -1,9 +1,14 @@
-import {SanitizerEngineResponse} from './interfaces.js';
+import {SanitizerEngineResponse,SanitizerError} from './interfaces.js';
+
 export function SanitizerEngine(dataToSanitize:string,
                          keepLetters:boolean,
                          keepNumbers:boolean,
                          allowedChars:Array<string>
                          ):SanitizerEngineResponse{
+    let verify=verifyDataToSanitizer(dataToSanitize);
+    if(!verify.isOk){
+       return verify;
+    }
     let sanitizedData="";
     for(let i=0;i<dataToSanitize.length;i++){
        let currentChar=dataToSanitize[i];
@@ -32,6 +37,10 @@ export function SanitizerEngine(dataToSanitize:string,
     };
 }
 export function charInsertEngine(dataToSanitize:string,searchChars:Array<string>,insertString:string){
+   let verify=verifyDataToSanitizer(dataToSanitize);
+   if(!verify.isOk){
+     return verify;
+   }
    let sanitizedData='';
    for(let i=0;i<dataToSanitize.length;i++){
        let currentChar=dataToSanitize[i];
@@ -48,4 +57,18 @@ export function charInsertEngine(dataToSanitize:string,searchChars:Array<string>
     sanitizedData:sanitizedData,
     error:'no Error'
    };
+}
+
+function verifyDataToSanitizer(dataToSanitize:string):SanitizerEngineResponse{
+   let isOk=true;
+   let error:SanitizerError='no Error';
+   if(typeof(dataToSanitize)!=='string'){
+     error='Invalid Data To Sanitize Type';
+     isOk=false;
+   }
+   return {
+     isOk:isOk,
+     error:error,
+     sanitizedData:'',
+   }
 }
