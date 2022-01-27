@@ -59,7 +59,7 @@ export function charInsertEngine(dataToSanitize:string,searchChars:Array<string>
    };
 }
 
-function verifyDataToSanitizer(dataToSanitize:string):SanitizerEngineResponse{
+function verifyDataToSanitizer(dataToSanitize:string){
    let isOk=true;
    let error:SanitizerError='no Error';
    if(typeof(dataToSanitize)!=='string'){
