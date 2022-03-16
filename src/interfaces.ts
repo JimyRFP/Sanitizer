@@ -4,8 +4,3 @@ export interface SanitizerEngineResponse{
     sanitizedData:string,
     error:SanitizerError,
 };
-
-export interface SanitizerResponse{
-    isOk:boolean,
-    sanitizedData:string,
- };

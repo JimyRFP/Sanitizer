@@ -7,7 +7,7 @@ export function SanitizerEngine(dataToSanitize:string,
                          ):SanitizerEngineResponse{
     let verify=verifyDataToSanitizer(dataToSanitize);
     if(!verify.isOk){
-       return verify;
+       throw verify.error;
     }
     let sanitizedData="";
     for(let i=0;i<dataToSanitize.length;i++){
@@ -39,7 +39,7 @@ export function SanitizerEngine(dataToSanitize:string,
 export function charInsertEngine(dataToSanitize:string,searchChars:Array<string>,insertString:string){
    let verify=verifyDataToSanitizer(dataToSanitize);
    if(!verify.isOk){
-     return verify;
+     throw verify.error;
    }
    let sanitizedData='';
    for(let i=0;i<dataToSanitize.length;i++){
@@ -69,6 +69,5 @@ function verifyDataToSanitizer(dataToSanitize:string){
    return {
      isOk:isOk,
      error:error,
-     sanitizedData:'',
    }
 }

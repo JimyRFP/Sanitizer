@@ -1,15 +1,14 @@
 "use strict";
-exports.__esModule = true;
-exports.charInsertEngine = exports.SanitizerEngine = void 0;
+Object.defineProperty(exports, "__esModule", { value: true });
 function SanitizerEngine(dataToSanitize, keepLetters, keepNumbers, allowedChars) {
-    var verify = verifyDataToSanitizer(dataToSanitize);
+    let verify = verifyDataToSanitizer(dataToSanitize);
     if (!verify.isOk) {
-        return verify;
+        throw verify.error;
     }
-    var sanitizedData = "";
-    for (var i = 0; i < dataToSanitize.length; i++) {
-        var currentChar = dataToSanitize[i];
-        var asc2Char = currentChar.charCodeAt(0);
+    let sanitizedData = "";
+    for (let i = 0; i < dataToSanitize.length; i++) {
+        let currentChar = dataToSanitize[i];
+        let asc2Char = currentChar.charCodeAt(0);
         if (keepLetters)
             if ((asc2Char > 64 && asc2Char < 91) || (asc2Char > 96 && asc2Char < 123)) {
                 sanitizedData += currentChar;
@@ -20,7 +19,7 @@ function SanitizerEngine(dataToSanitize, keepLetters, keepNumbers, allowedChars)
                 sanitizedData += currentChar;
                 continue;
             }
-        for (var j = 0; j < allowedChars.length; j++) {
+        for (let j = 0; j < allowedChars.length; j++) {
             if (currentChar === allowedChars[j]) {
                 sanitizedData += currentChar;
                 break;
@@ -35,14 +34,14 @@ function SanitizerEngine(dataToSanitize, keepLetters, keepNumbers, allowedChars)
 }
 exports.SanitizerEngine = SanitizerEngine;
 function charInsertEngine(dataToSanitize, searchChars, insertString) {
-    var verify = verifyDataToSanitizer(dataToSanitize);
+    let verify = verifyDataToSanitizer(dataToSanitize);
     if (!verify.isOk) {
-        return verify;
+        throw verify.error;
     }
-    var sanitizedData = '';
-    for (var i = 0; i < dataToSanitize.length; i++) {
-        var currentChar = dataToSanitize[i];
-        var j = 0;
+    let sanitizedData = '';
+    for (let i = 0; i < dataToSanitize.length; i++) {
+        let currentChar = dataToSanitize[i];
+        let j = 0;
         for (; j < searchChars.length; j++)
             if (currentChar === searchChars[j])
                 break;
@@ -58,8 +57,8 @@ function charInsertEngine(dataToSanitize, searchChars, insertString) {
 }
 exports.charInsertEngine = charInsertEngine;
 function verifyDataToSanitizer(dataToSanitize) {
-    var isOk = true;
-    var error = 'no Error';
+    let isOk = true;
+    let error = 'no Error';
     if (typeof (dataToSanitize) !== 'string') {
         error = 'Invalid Data To Sanitize Type';
         isOk = false;
@@ -67,6 +66,5 @@ function verifyDataToSanitizer(dataToSanitize) {
     return {
         isOk: isOk,
         error: error,
-        sanitizedData: ''
     };
 }

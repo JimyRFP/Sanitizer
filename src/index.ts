@@ -1,10 +1,4 @@
-import { sanitizeEmail } from "./sanitizeEmail.js";
-import {queryProtector} from "./sql.js";
-import {justCharsAndNumbers} from './justCharsAndNumbers';
-import {SanitizerEngine} from './engine';
-module.exports={
-    email:sanitizeEmail,
-    sqlQueryProtector:queryProtector,
-    justCharsAndNumbers:justCharsAndNumbers,
-    engine:SanitizerEngine,
-}
+export { sanitizeEmail } from "./sanitizeEmail.js";
+export {queryProtector} from "./sql.js";
+export {justCharsAndNumbers} from './justCharsAndNumbers';
+export {SanitizerEngine} from './engine';

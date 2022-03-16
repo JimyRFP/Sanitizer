@@ -1,12 +1,8 @@
 import { charInsertEngine } from "./engine.js";
-import {SanitizerResponse,SanitizerEngineResponse} from './interfaces.js';
 const dangeroursChars=["'","\\"];
 const protectorChar="\\";
 
-export function queryProtector(queryToProtect:string):SanitizerResponse{
+export function queryProtector(queryToProtect:string):string{
     let sanitizerResult=charInsertEngine(queryToProtect,dangeroursChars,protectorChar);
-    return {
-       isOk:sanitizerResult.isOk,
-       sanitizedData:sanitizerResult.sanitizedData,
-    }
+    return sanitizerResult.sanitizedData;
 }

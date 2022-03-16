@@ -1,10 +1,7 @@
 import { SanitizerEngine } from "./engine.js";
-import {SanitizerResponse,SanitizerEngineResponse} from './interfaces.js';
+import {SanitizerEngineResponse} from './interfaces.js';
 const emailAllowedChars=['_','.','@'];
-export function sanitizeEmail(email:string):SanitizerResponse{
+export function sanitizeEmail(email:string):string{
   let engineData:SanitizerEngineResponse=SanitizerEngine(email,true,true,emailAllowedChars);
-  return {
-      isOk:engineData.isOk,
-      sanitizedData:engineData.sanitizedData,
-  };
+  return engineData.sanitizedData;
 }
