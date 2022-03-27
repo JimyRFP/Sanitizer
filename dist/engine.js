@@ -33,6 +33,30 @@ function SanitizerEngine(dataToSanitize, keepLetters, keepNumbers, allowedChars)
     };
 }
 exports.SanitizerEngine = SanitizerEngine;
+function SanitizerEngineExcluder(dataToSanitize, blockedChars) {
+    let verify = verifyDataToSanitizer(dataToSanitize);
+    if (!verify.isOk) {
+        throw verify.error;
+    }
+    if (blockedChars == undefined)
+        throw "Must set chars to exclude";
+    let sanitizedData = "";
+    const blockedCharsSize = blockedChars.length;
+    for (let i = 0; i < dataToSanitize.length; i++) {
+        let allow = true;
+        for (let j = 0; j < blockedCharsSize; j++) {
+            if (dataToSanitize[i] === blockedChars[j]) {
+                allow = false;
+                break;
+            }
+        }
+        if (!allow)
+            continue;
+        sanitizedData += dataToSanitize[i];
+    }
+    return sanitizedData;
+}
+exports.SanitizerEngineExcluder = SanitizerEngineExcluder;
 function charInsertEngine(dataToSanitize, searchChars, insertString) {
     let verify = verifyDataToSanitizer(dataToSanitize);
     if (!verify.isOk) {

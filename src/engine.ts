@@ -1,5 +1,7 @@
 import {SanitizerEngineResponse,SanitizerError} from './interfaces.js';
 
+
+
 export function SanitizerEngine(dataToSanitize:string,
                          keepLetters:boolean,
                          keepNumbers:boolean,
@@ -36,6 +38,34 @@ export function SanitizerEngine(dataToSanitize:string,
         error:'no Error'
     };
 }
+
+export function SanitizerEngineExcluder(dataToSanitize:string,
+                                      blockedChars:Array<string>
+                                    ):string{
+          let verify=verifyDataToSanitizer(dataToSanitize);
+          if(!verify.isOk){
+             throw verify.error;
+          }
+          if(blockedChars==undefined)
+            throw "Must set chars to exclude";
+            
+          let sanitizedData="";
+          const blockedCharsSize=blockedChars.length;
+          for(let i=0;i<dataToSanitize.length;i++){
+             let allow=true;
+             for(let j=0;j<blockedCharsSize;j++){
+                 if(dataToSanitize[i]===blockedChars[j]){
+                    allow=false;
+                    break;
+                 }
+             }
+             if(!allow)
+               continue;
+             sanitizedData+=dataToSanitize[i];  
+          }
+          return sanitizedData;
+}
+
 export function charInsertEngine(dataToSanitize:string,searchChars:Array<string>,insertString:string){
    let verify=verifyDataToSanitizer(dataToSanitize);
    if(!verify.isOk){
