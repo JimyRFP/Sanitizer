@@ -5,6 +5,7 @@ import {SanitizerEngine} from './engine';
 import { justChars } from "./justChars.js";
 import { SanitizerEngineExcluder } from "./engine";
 import { filterCommandChars } from "./filterCommandChars.js";
+import { justNumbers } from "./justNumbers.js";
 const meta_sanitizer={
     sanitizeEmail:sanitizeEmail,
     queryProtector:queryProtector,
@@ -13,5 +14,6 @@ const meta_sanitizer={
     justChars:justChars,
     filterCommandChars:filterCommandChars,
     ExcluderEngine:SanitizerEngineExcluder,
+    justNumbers:justNumbers,
 }
 export default meta_sanitizer;
