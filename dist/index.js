@@ -8,6 +8,7 @@ const justChars_js_1 = require("./justChars.js");
 const engine_2 = require("./engine");
 const filterCommandChars_js_1 = require("./filterCommandChars.js");
 const justNumbers_js_1 = require("./justNumbers.js");
+const filterDouble_js_1 = require("./filterDouble.js");
 const meta_sanitizer = {
     sanitizeEmail: sanitizeEmail_js_1.sanitizeEmail,
     queryProtector: sql_js_1.queryProtector,
@@ -17,5 +18,6 @@ const meta_sanitizer = {
     filterCommandChars: filterCommandChars_js_1.filterCommandChars,
     ExcluderEngine: engine_2.SanitizerEngineExcluder,
     justNumbers: justNumbers_js_1.justNumbers,
+    filterDouble: filterDouble_js_1.filterDouble,
 };
 exports.default = meta_sanitizer;
