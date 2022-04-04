@@ -1,5 +1,6 @@
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
+exports.charInsertEngine = exports.SanitizerEngineExcluder = exports.SanitizerEngine = void 0;
 function SanitizerEngine(dataToSanitize, keepLetters, keepNumbers, allowedChars) {
     let verify = verifyDataToSanitizer(dataToSanitize);
     if (!verify.isOk) {
