@@ -12,8 +12,9 @@ export function SanitizerEngine(dataToSanitize:string,
        throw verify.error;
     }
     let sanitizedData="";
-    for(let i=0;i<dataToSanitize.length;i++){
-       let currentChar=dataToSanitize[i];
+    const correctDataToSanitize=verify.dataToSanitize;
+    for(let i=0;i<correctDataToSanitize.length;i++){
+       let currentChar=correctDataToSanitize[i];
        let asc2Char:number=currentChar.charCodeAt(0);
        if(keepLetters)
          if((asc2Char>64 && asc2Char<91)||(asc2Char>96 && asc2Char<123)){
@@ -51,17 +52,18 @@ export function SanitizerEngineExcluder(dataToSanitize:string,
             
           let sanitizedData="";
           const blockedCharsSize=blockedChars.length;
-          for(let i=0;i<dataToSanitize.length;i++){
+          const correctDataToSanitize=verify.dataToSanitize;
+          for(let i=0;i<correctDataToSanitize.length;i++){
              let allow=true;
              for(let j=0;j<blockedCharsSize;j++){
-                 if(dataToSanitize[i]===blockedChars[j]){
+                 if(correctDataToSanitize[i]===blockedChars[j]){
                     allow=false;
                     break;
                  }
              }
              if(!allow)
                continue;
-             sanitizedData+=dataToSanitize[i];  
+             sanitizedData+=correctDataToSanitize[i];  
           }
           return sanitizedData;
 }
@@ -71,9 +73,10 @@ export function charInsertEngine(dataToSanitize:string,searchChars:Array<string>
    if(!verify.isOk){
      throw verify.error;
    }
+   const correctDataToSanitize=verify.dataToSanitize;
    let sanitizedData='';
-   for(let i=0;i<dataToSanitize.length;i++){
-       let currentChar=dataToSanitize[i];
+   for(let i=0;i<correctDataToSanitize.length;i++){
+       let currentChar=correctDataToSanitize[i];
        let j=0;
        for(;j<searchChars.length;j++)
           if(currentChar===searchChars[j])
@@ -92,12 +95,19 @@ export function charInsertEngine(dataToSanitize:string,searchChars:Array<string>
 function verifyDataToSanitizer(dataToSanitize:string){
    let isOk=true;
    let error:SanitizerError='no Error';
-   if(typeof(dataToSanitize)!=='string'){
-     error='Invalid Data To Sanitize Type';
-     isOk=false;
+   const type=typeof(dataToSanitize);
+   let correctDataToSanitize=dataToSanitize;
+   if(type!=='string'){
+     if(type!=='number' && type!=='bigint'){
+       error='Invalid Data To Sanitize Type';
+       isOk=false;
+     }else{
+        correctDataToSanitize=dataToSanitize.toString();
+     }
    }
    return {
      isOk:isOk,
      error:error,
+     dataToSanitize:correctDataToSanitize,
    }
 }
