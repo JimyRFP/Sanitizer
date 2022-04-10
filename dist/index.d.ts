@@ -7,6 +7,7 @@ import { SanitizerEngineExcluder } from "./engine";
 import { filterCommandChars } from "./filterCommandChars.js";
 import { justNumbers } from "./justNumbers.js";
 import { filterDouble } from "./filterDouble.js";
+import { charInsertEngine } from "./engine";
 declare const meta_sanitizer: {
     sanitizeEmail: typeof sanitizeEmail;
     queryProtector: typeof queryProtector;
@@ -17,5 +18,6 @@ declare const meta_sanitizer: {
     ExcluderEngine: typeof SanitizerEngineExcluder;
     justNumbers: typeof justNumbers;
     filterDouble: typeof filterDouble;
+    charInsertEngine: typeof charInsertEngine;
 };
 export default meta_sanitizer;
