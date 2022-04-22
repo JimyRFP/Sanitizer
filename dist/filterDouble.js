@@ -2,6 +2,8 @@
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.filterDouble = void 0;
 function filterDouble(val) {
+    if (typeof (val) == 'number')
+        return val;
     let i = 0;
     for (; i < val.length; i++) {
         let asc2Char = val.charCodeAt(i);

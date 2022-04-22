@@ -1,4 +1,6 @@
 export function filterDouble(val:string):number{
+    if(typeof(val)=='number')
+      return val;
     let i=0;
     for(;i<val.length;i++){
         let asc2Char=val.charCodeAt(i);
