@@ -6,3 +6,4 @@ export declare function charInsertEngine(dataToSanitize: string, searchChars: Ar
     sanitizedData: string;
     error: string;
 };
+export declare function removeAccentuation(str: string): string;

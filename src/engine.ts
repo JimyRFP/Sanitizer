@@ -111,3 +111,7 @@ function verifyDataToSanitizer(dataToSanitize:string){
      dataToSanitize:correctDataToSanitize,
    }
 }
+
+export function removeAccentuation(str:string){
+  return str.normalize("NFKD").replace(/[\u0300-\u036f]/g, "");
+}

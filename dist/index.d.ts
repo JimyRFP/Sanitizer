@@ -8,6 +8,7 @@ import { filterCommandChars } from "./filterCommandChars.js";
 import { justNumbers } from "./justNumbers.js";
 import { filterDouble } from "./filterDouble.js";
 import { charInsertEngine } from "./engine";
+import { removeAccentuation } from "./engine";
 declare const meta_sanitizer: {
     sanitizeEmail: typeof sanitizeEmail;
     queryProtector: typeof queryProtector;
@@ -19,5 +20,6 @@ declare const meta_sanitizer: {
     justNumbers: typeof justNumbers;
     filterDouble: typeof filterDouble;
     charInsertEngine: typeof charInsertEngine;
+    removeAccentuation: typeof removeAccentuation;
 };
 export default meta_sanitizer;

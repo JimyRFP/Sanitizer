@@ -1,6 +1,6 @@
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.charInsertEngine = exports.SanitizerEngineExcluder = exports.SanitizerEngine = void 0;
+exports.removeAccentuation = exports.charInsertEngine = exports.SanitizerEngineExcluder = exports.SanitizerEngine = void 0;
 function SanitizerEngine(dataToSanitize, keepLetters, keepNumbers, allowedChars) {
     let verify = verifyDataToSanitizer(dataToSanitize);
     if (!verify.isOk) {
@@ -104,3 +104,7 @@ function verifyDataToSanitizer(dataToSanitize) {
         dataToSanitize: correctDataToSanitize,
     };
 }
+function removeAccentuation(str) {
+    return str.normalize("NFKD").replace(/[\u0300-\u036f]/g, "");
+}
+exports.removeAccentuation = removeAccentuation;

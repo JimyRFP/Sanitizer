@@ -1,1 +1,1 @@
-export declare function justCharsAndNumbers(stringToSanize: string, allowSpace: boolean): string;
+export declare function justCharsAndNumbers(stringToSanize: string, allowSpace?: boolean, removeAccentuation?: boolean): string;

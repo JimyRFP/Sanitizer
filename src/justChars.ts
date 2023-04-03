@@ -1,7 +1,11 @@
 import { SanitizerEngine } from "./engine.js";
-export function justChars(stringToSanize:string,allowSpace:boolean):string{
+import { removeAccentuation as rmvAc } from "./engine.js";
+export function justChars(stringToSanize:string,allowSpace:boolean=true,removeAccentuation:boolean=true):string{
    let allowChars=[];
    if(allowSpace)
       allowChars.push(' ');
-   return SanitizerEngine(stringToSanize,true,false,allowChars).sanitizedData;
+   let useString=stringToSanize;
+   if(removeAccentuation)
+     useString=rmvAc(useString);   
+   return SanitizerEngine(useString,true,false,allowChars).sanitizedData;
 }

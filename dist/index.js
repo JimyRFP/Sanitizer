@@ -10,6 +10,7 @@ const filterCommandChars_js_1 = require("./filterCommandChars.js");
 const justNumbers_js_1 = require("./justNumbers.js");
 const filterDouble_js_1 = require("./filterDouble.js");
 const engine_3 = require("./engine");
+const engine_4 = require("./engine");
 const meta_sanitizer = {
     sanitizeEmail: sanitizeEmail_js_1.sanitizeEmail,
     queryProtector: sql_js_1.queryProtector,
@@ -21,5 +22,6 @@ const meta_sanitizer = {
     justNumbers: justNumbers_js_1.justNumbers,
     filterDouble: filterDouble_js_1.filterDouble,
     charInsertEngine: engine_3.charInsertEngine,
+    removeAccentuation: engine_4.removeAccentuation,
 };
 exports.default = meta_sanitizer;
